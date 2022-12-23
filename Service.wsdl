@@ -1,0 +1,1116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<wsdl:definitions targetNamespace="http://E_Library" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://E_Library" 
+xmlns:intf="http://E_Library" xmlns:tns1="http://entity" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/"
+ xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://E_Library" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://entity"/>
+   <element name="login">
+    <complexType>
+     <sequence>
+      <element name="emailId" type="xsd:string"/>
+      <element name="pwd" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="loginResponse">
+    <complexType>
+     <sequence>
+      <element name="loginReturn" type="tns1:Person"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOf_tns1_Person">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns1:Person"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOf_tns1_Transactions">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns1:Transactions"/>
+    </sequence>
+   </complexType>
+   <element name="createMember">
+    <complexType>
+     <sequence>
+      <element name="memberId" type="xsd:long"/>
+      <element name="fName" type="xsd:string"/>
+      <element name="lName" type="xsd:string"/>
+      <element name="emailId" type="xsd:string"/>
+      <element name="pwd" type="xsd:string"/>
+      <element name="address" type="xsd:string"/>
+      <element name="city" type="xsd:string"/>
+      <element name="state" type="xsd:string"/>
+      <element name="zipCode" type="xsd:long"/>
+      <element name="userType" type="xsd:int"/>
+      <element name="monthlySubFee" type="xsd:int"/>
+      <element name="totalOutstandingBooks" type="xsd:int"/>
+      <element name="rentForBooksIssued" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="createMemberResponse">
+    <complexType>
+     <sequence>
+      <element name="createMemberReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="memberFromID">
+    <complexType>
+     <sequence>
+      <element name="membershipId" type="xsd:long"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="memberFromIDResponse">
+    <complexType>
+     <sequence>
+      <element name="memberFromIDReturn" type="tns1:Person"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="updatePerson">
+    <complexType>
+     <sequence>
+      <element name="membershipId" type="xsd:long"/>
+      <element name="firstName" type="xsd:string"/>
+      <element name="lastName" type="xsd:string"/>
+      <element name="emailId" type="xsd:string"/>
+      <element name="password" type="xsd:string"/>
+      <element name="address" type="xsd:string"/>
+      <element name="city" type="xsd:string"/>
+      <element name="state" type="xsd:string"/>
+      <element name="zipCode" type="xsd:long"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="updatePersonResponse">
+    <complexType>
+     <sequence>
+      <element name="updatePersonReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="displayBooks">
+    <complexType/>
+   </element>
+   <element name="displayBooksResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="displayBooksReturn" type="tns1:Book"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="displayPremiumMembers">
+    <complexType/>
+   </element>
+   <element name="displayPremiumMembersResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="displayPremiumMembersReturn" type="tns1:PremiumMembers"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="displayPerson">
+    <complexType/>
+   </element>
+   <element name="displayPersonResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="displayPersonReturn" type="tns1:Person"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="displaySimpleMembers">
+    <complexType/>
+   </element>
+   <element name="displaySimpleMembersResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="displaySimpleMembersReturn" type="tns1:SimpleMembers"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="createBook">
+    <complexType>
+     <sequence>
+      <element name="bookName" type="xsd:string"/>
+      <element name="bookBanner" type="xsd:string"/>
+      <element name="bookReleaseDate" type="xsd:date"/>
+      <element name="bookRent" type="xsd:float"/>
+      <element name="bookCategory" type="xsd:string"/>
+      <element name="availableCopies" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="createBookResponse">
+    <complexType>
+     <sequence>
+      <element name="createBookReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="deleteBook">
+    <complexType>
+     <sequence>
+      <element name="bookId" type="xsd:int"/>
+      <element name="bookName" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="deleteBookResponse">
+    <complexType>
+     <sequence>
+      <element name="deleteBookReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="deleteMember">
+    <complexType>
+     <sequence>
+      <element name="membershipId" type="xsd:long"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="deleteMemberResponse">
+    <complexType>
+     <sequence>
+      <element name="deleteMemberReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="updateBook">
+    <complexType>
+     <sequence>
+      <element name="bookId" type="xsd:int"/>
+      <element name="bookName" type="xsd:string"/>
+      <element name="bookBanner" type="xsd:string"/>
+      <element name="bookReleaseDate" type="xsd:date"/>
+      <element name="bookRent" type="xsd:float"/>
+      <element name="bookCategory" type="xsd:string"/>
+      <element name="availableCopies" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="updateBookResponse">
+    <complexType>
+     <sequence>
+      <element name="updateBookReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="updateBookRequest">
+    <complexType>
+     <sequence>
+      <element name="bookId" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="updateBookRequestResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="updateBookRequestReturn" type="tns1:Book"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="searchBook">
+    <complexType>
+     <sequence>
+      <element name="attributeName" type="xsd:string"/>
+      <element name="attributeValue" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="searchBookResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="searchBookReturn" type="tns1:Book"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="searchPerson">
+    <complexType>
+     <sequence>
+      <element name="attributeName" type="xsd:string"/>
+      <element name="attributeValue" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="searchPersonResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="searchPersonReturn" type="tns1:Person"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addToCart">
+    <complexType>
+     <sequence>
+      <element name="bookId" type="xsd:int"/>
+      <element name="memberId" type="xsd:long"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addToCartResponse">
+    <complexType>
+     <sequence>
+      <element name="addToCartReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="dopayment">
+    <complexType>
+     <sequence>
+      <element name="membershipId" type="xsd:long"/>
+      <element name="dueAmount" type="xsd:float"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="dopaymentResponse">
+    <complexType>
+     <sequence>
+      <element name="dopaymentReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getBookInformationWithIssuedByUsers">
+    <complexType>
+     <sequence>
+      <element name="bookId" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getBookInformationWithIssuedByUsersResponse">
+    <complexType>
+     <sequence>
+      <element name="getBookInformationWithIssuedByUsersReturn" type="tns1:Book"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="displayCart">
+    <complexType>
+     <sequence>
+      <element name="membershipId" type="xsd:long"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="displayCartResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="displayCartReturn" type="tns1:Cart"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="removeBookFromCart">
+    <complexType>
+     <sequence>
+      <element name="cartId" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="removeBookFromCartResponse">
+    <complexType>
+     <sequence>
+      <element name="removeBookFromCartReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="isPaymentDue">
+    <complexType>
+     <sequence>
+      <element name="membershipId" type="xsd:long"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="isPaymentDueResponse">
+    <complexType>
+     <sequence>
+      <element name="isPaymentDueReturn" type="xsd:float"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="emptyCart">
+    <complexType>
+     <sequence>
+      <element name="membershipId" type="xsd:long"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="emptyCartResponse">
+    <complexType>
+     <sequence>
+      <element name="emptyCartReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="issuedBookList">
+    <complexType>
+     <sequence>
+      <element name="membershipId" type="xsd:long"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="issuedBookListResponse">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="issuedBookListReturn" type="tns1:Transactions"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="rentBook">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="cart_details_array" type="tns1:Cart"/>
+      <element name="membershipId" type="xsd:long"/>
+      <element name="userType" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="rentBookResponse">
+    <complexType>
+     <sequence>
+      <element name="rentBookReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="returnBook">
+    <complexType>
+     <sequence>
+      <element name="bookId" type="xsd:int"/>
+      <element name="membershipId" type="xsd:long"/>
+      <element name="userType" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="returnBookResponse">
+    <complexType>
+     <sequence>
+      <element name="returnBookReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getUserInformationWithIssuedBooks">
+    <complexType>
+     <sequence>
+      <element name="membershipId" type="xsd:long"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getUserInformationWithIssuedBooksResponse">
+    <complexType>
+     <sequence>
+      <element name="getUserInformationWithIssuedBooksReturn" type="tns1:Person"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://entity" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://E_Library"/>
+   <complexType name="Book">
+    <sequence>
+     <element name="availableCopies" type="xsd:int"/>
+     <element name="bookBanner" nillable="true" type="xsd:string"/>
+     <element name="bookCategory" nillable="true" type="xsd:string"/>
+     <element name="bookId" type="xsd:int"/>
+     <element name="bookName" nillable="true" type="xsd:string"/>
+     <element name="bookReleaseDate" nillable="true" type="xsd:dateTime"/>
+     <element name="bookRent" type="xsd:float"/>
+     <element name="users" nillable="true" type="impl:ArrayOf_tns1_Person"/>
+    </sequence>
+   </complexType>
+   <complexType name="Transactions">
+    <sequence>
+     <element name="actualReturnDate" nillable="true" type="xsd:dateTime"/>
+     <element name="dueDate" nillable="true" type="xsd:dateTime"/>
+     <element name="fineAmount" type="xsd:float"/>
+     <element name="issueDate" nillable="true" type="xsd:dateTime"/>
+     <element name="membershipId" type="xsd:long"/>
+     <element name="book" nillable="true" type="tns1:Book"/>
+     <element name="bookId" type="xsd:int"/>
+     <element name="bookName" nillable="true" type="xsd:string"/>
+     <element name="transactionId" type="xsd:long"/>
+    </sequence>
+   </complexType>
+   <complexType name="Person">
+    <sequence>
+     <element name="address" nillable="true" type="xsd:string"/>
+     <element name="city" nillable="true" type="xsd:string"/>
+     <element name="emailId" nillable="true" type="xsd:string"/>
+     <element name="firstName" nillable="true" type="xsd:string"/>
+     <element name="lastLogin" nillable="true" type="xsd:dateTime"/>
+     <element name="lastName" nillable="true" type="xsd:string"/>
+     <element name="membershipId" type="xsd:long"/>
+     <element name="password" nillable="true" type="xsd:string"/>
+     <element name="registrationDate" nillable="true" type="xsd:dateTime"/>
+     <element name="state" nillable="true" type="xsd:string"/>
+     <element name="transaction" nillable="true" type="tns1:Transactions"/>
+     <element name="transactions" nillable="true" type="impl:ArrayOf_tns1_Transactions"/>
+     <element name="userType" type="xsd:int"/>
+     <element name="zipCode" type="xsd:long"/>
+    </sequence>
+   </complexType>
+   <complexType name="PremiumMembers">
+    <sequence>
+     <element name="address" nillable="true" type="xsd:string"/>
+     <element name="city" nillable="true" type="xsd:string"/>
+     <element name="dueAmount" type="xsd:float"/>
+     <element name="emailId" nillable="true" type="xsd:string"/>
+     <element name="expiryDate" nillable="true" type="xsd:dateTime"/>
+     <element name="firstName" nillable="true" type="xsd:string"/>
+     <element name="lastLogin" nillable="true" type="xsd:dateTime"/>
+     <element name="lastName" nillable="true" type="xsd:string"/>
+     <element name="membershipId" type="xsd:long"/>
+     <element name="password" nillable="true" type="xsd:string"/>
+     <element name="premiumMemberId" type="xsd:int"/>
+     <element name="registrationDate" nillable="true" type="xsd:dateTime"/>
+     <element name="state" nillable="true" type="xsd:string"/>
+     <element name="totalOutstandingBooks" type="xsd:int"/>
+     <element name="userType" type="xsd:int"/>
+     <element name="zipCode" type="xsd:long"/>
+    </sequence>
+   </complexType>
+   <complexType name="SimpleMembers">
+    <sequence>
+     <element name="address" nillable="true" type="xsd:string"/>
+     <element name="city" nillable="true" type="xsd:string"/>
+     <element name="emailId" nillable="true" type="xsd:string"/>
+     <element name="firstName" nillable="true" type="xsd:string"/>
+     <element name="lastLogin" nillable="true" type="xsd:dateTime"/>
+     <element name="lastName" nillable="true" type="xsd:string"/>
+     <element name="membershipId" type="xsd:long"/>
+     <element name="password" nillable="true" type="xsd:string"/>
+     <element name="registrationDate" nillable="true" type="xsd:dateTime"/>
+     <element name="rentForBooksIssued" type="xsd:float"/>
+     <element name="simpleMemberId" type="xsd:int"/>
+     <element name="state" nillable="true" type="xsd:string"/>
+     <element name="totalOutstandingBooks" type="xsd:int"/>
+     <element name="userType" type="xsd:int"/>
+     <element name="zipCode" type="xsd:long"/>
+    </sequence>
+   </complexType>
+   <complexType name="Cart">
+    <sequence>
+     <element name="cartId" type="xsd:int"/>
+     <element name="membershipId" type="xsd:long"/>
+     <element name="bookDetails" nillable="true" type="tns1:Book"/>
+     <element name="bookId" type="xsd:int"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="deleteBookResponse">
+      <wsdl:part element="impl:deleteBookResponse" name="parameters">
+      </wsdl:part>
+   </wsdl:message>
+   <wsdl:message name="deleteMemberResponse">
+      <wsdl:part element="impl:deleteMemberResponse" name="parameters">
+      </wsdl:part>
+   </wsdl:message>
+   <wsdl:message name="createBookRequest">
+      <wsdl:part element="impl:createBook" name="parameters">
+      </wsdl:part>
+   </wsdl:message>
+   <wsdl:message name="displaySimpleMembersRequest">
+      <wsdl:part element="impl:displaySimpleMembers" name="parameters">
+      </wsdl:part>
+   </wsdl:message>
+   <wsdl:message name="createMemberResponse">
+      <wsdl:part element="impl:createMemberResponse" name="parameters">
+      </wsdl:part>
+   </wsdl:message>
+   <wsdl:message name="deleteMemberRequest">
+      <wsdl:part element="impl:deleteMember" name="parameters">
+      </wsdl:part>
+   </wsdl:message>
+   <wsdl:message name="searchPersonResponse">
+      <wsdl:part element="impl:searchPersonResponse" name="parameters">
+      </wsdl:part>
+   </wsdl:message>
+   <wsdl:message name="updateBookRequestRequest">
+      <wsdl:part element="impl:updateBookRequest" name="parameters">
+      </wsdl:part>
+   </wsdl:message>
+   <wsdl:message name="displayPersonResponse">
+      <wsdl:part element="impl:displayPersonResponse" name="parameters">
+      </wsdl:part>
+   </wsdl:message>
+   <wsdl:message name="getBookInformationWithIssuedByUsersRequest">
+      <wsdl:part element="impl:getBookInformationWithIssuedByUsers" name="parameters">
+      </wsdl:part>
+   </wsdl:message>
+   <wsdl:message name="memberFromIDResponse">
+      <wsdl:part element="impl:memberFromIDResponse" name="parameters">
+      </wsdl:part>
+   </wsdl:message>
+   <wsdl:message name="isPaymentDueRequest">
+      <wsdl:part element="impl:isPaymentDue" name="parameters">
+      </wsdl:part>
+   </wsdl:message>
+   <wsdl:message name="getBookInformationWithIssuedByUsersResponse">
+      <wsdl:part element="impl:getBookInformationWithIssuedByUsersResponse" name="parameters">
+      </wsdl:part>
+   </wsdl:message>
+   <wsdl:message name="getUserInformationWithIssuedBooksRequest">
+      <wsdl:part element="impl:getUserInformationWithIssuedBooks" name="parameters">
+      </wsdl:part>
+   </wsdl:message>
+   <wsdl:message name="displayBookRequest">
+      <wsdl:part element="impl:displayBook" name="parameters">
+      </wsdl:part>
+   </wsdl:message>
+   <wsdl:message name="updateBookResponse">
+      <wsdl:part element="impl:updateBookResponse" name="parameters">
+      </wsdl:part>
+   </wsdl:message>
+   <wsdl:message name="createMemberRequest">
+      <wsdl:part element="impl:createMember" name="parameters">
+      </wsdl:part>
+   </wsdl:message>
+   <wsdl:message name="searchBookResponse">
+      <wsdl:part element="impl:searchBookResponse" name="parameters">
+      </wsdl:part>
+   </wsdl:message>
+   <wsdl:message name="searchPersonRequest">
+      <wsdl:part element="impl:searchPerson" name="parameters">
+      </wsdl:part>
+   </wsdl:message>
+   <wsdl:message name="loginRequest">
+      <wsdl:part element="impl:login" name="parameters">
+      </wsdl:part>
+   </wsdl:message>
+   <wsdl:message name="issuedBookListRequest">
+      <wsdl:part element="impl:issuedBookList" name="parameters">
+      </wsdl:part>
+   </wsdl:message>
+   <wsdl:message name="memberFromIDRequest">
+      <wsdl:part element="impl:memberFromID" name="parameters">
+      </wsdl:part>
+   </wsdl:message>
+   <wsdl:message name="createBookResponse">
+      <wsdl:part element="impl:createBookResponse" name="parameters">
+      </wsdl:part>
+   </wsdl:message>
+   <wsdl:message name="dopaymentRequest">
+      <wsdl:part element="impl:dopayment" name="parameters">
+      </wsdl:part>
+   </wsdl:message>
+   <wsdl:message name="loginResponse">
+      <wsdl:part element="impl:loginResponse" name="parameters">
+      </wsdl:part>
+   </wsdl:message>
+   <wsdl:message name="displayPersonRequest">
+      <wsdl:part element="impl:displayPerson" name="parameters">
+      </wsdl:part>
+   </wsdl:message>
+   <wsdl:message name="displaySimpleMembersResponse">
+      <wsdl:part element="impl:displaySimpleMembersResponse" name="parameters">
+      </wsdl:part>
+   </wsdl:message>
+   <wsdl:message name="emptyCartResponse">
+      <wsdl:part element="impl:emptyCartResponse" name="parameters">
+      </wsdl:part>
+   </wsdl:message>
+   <wsdl:message name="emptyCartRequest">
+      <wsdl:part element="impl:emptyCart" name="parameters">
+      </wsdl:part>
+   </wsdl:message>
+   <wsdl:message name="updateBookRequestResponse">
+      <wsdl:part element="impl:updateBookRequestResponse" name="parameters">
+      </wsdl:part>
+   </wsdl:message>
+   <wsdl:message name="displayCartResponse">
+      <wsdl:part element="impl:displayCartResponse" name="parameters">
+      </wsdl:part>
+   </wsdl:message>
+   <wsdl:message name="displayPremiumMembersRequest">
+      <wsdl:part element="impl:displayPremiumMembers" name="parameters">
+      </wsdl:part>
+   </wsdl:message>
+   <wsdl:message name="addToCartResponse">
+      <wsdl:part element="impl:addToCartResponse" name="parameters">
+      </wsdl:part>
+   </wsdl:message>
+   <wsdl:message name="searchBookRequest">
+      <wsdl:part element="impl:searchBook" name="parameters">
+      </wsdl:part>
+   </wsdl:message>
+   <wsdl:message name="issuedBookListResponse">
+      <wsdl:part element="impl:issuedBookListResponse" name="parameters">
+      </wsdl:part>
+   </wsdl:message>
+   <wsdl:message name="isPaymentDueResponse">
+      <wsdl:part element="impl:isPaymentDueResponse" name="parameters">
+      </wsdl:part>
+   </wsdl:message>
+   <wsdl:message name="removeBookFromCartResponse">
+      <wsdl:part element="impl:removeBookFromCartResponse" name="parameters">
+      </wsdl:part>
+   </wsdl:message>
+   <wsdl:message name="rentBookRequest">
+      <wsdl:part element="impl:rentBook" name="parameters">
+      </wsdl:part>
+   </wsdl:message>
+   <wsdl:message name="removeBookFromCartRequest">
+      <wsdl:part element="impl:removeBookFromCart" name="parameters">
+      </wsdl:part>
+   </wsdl:message>
+   <wsdl:message name="updateBookRequest">
+      <wsdl:part element="impl:updateBook" name="parameters">
+      </wsdl:part>
+   </wsdl:message>
+   <wsdl:message name="displayPremiumMembersResponse">
+      <wsdl:part element="impl:displayPremiumMembersResponse" name="parameters">
+      </wsdl:part>
+   </wsdl:message>
+   <wsdl:message name="returnBookResponse">
+      <wsdl:part element="impl:returnBookResponse" name="parameters">
+      </wsdl:part>
+   </wsdl:message>
+   <wsdl:message name="addToCartRequest">
+      <wsdl:part element="impl:addToCart" name="parameters">
+      </wsdl:part>
+   </wsdl:message>
+   <wsdl:message name="rentBookResponse">
+      <wsdl:part element="impl:rentBookResponse" name="parameters">
+      </wsdl:part>
+   </wsdl:message>
+   <wsdl:message name="displayCartRequest">
+      <wsdl:part element="impl:displayCart" name="parameters">
+      </wsdl:part>
+   </wsdl:message>
+   <wsdl:message name="returnBookRequest">
+      <wsdl:part element="impl:returnBook" name="parameters">
+      </wsdl:part>
+   </wsdl:message>
+   <wsdl:message name="updatePersonResponse">
+      <wsdl:part element="impl:updatePersonResponse" name="parameters">
+      </wsdl:part>
+   </wsdl:message>
+   <wsdl:message name="updatePersonRequest">
+      <wsdl:part element="impl:updatePerson" name="parameters">
+      </wsdl:part>
+   </wsdl:message>
+   <wsdl:message name="getUserInformationWithIssuedBooksResponse">
+      <wsdl:part element="impl:getUserInformationWithIssuedBooksResponse" name="parameters">
+      </wsdl:part>
+   </wsdl:message>
+   <wsdl:message name="deleteBookRequest">
+      <wsdl:part element="impl:deleteBook" name="parameters">
+      </wsdl:part>
+   </wsdl:message>
+   <wsdl:message name="dopaymentResponse">
+      <wsdl:part element="impl:dopaymentResponse" name="parameters">
+      </wsdl:part>
+   </wsdl:message>
+   <wsdl:message name="displayBooksResponse">
+      <wsdl:part element="impl:displayBooksResponse" name="parameters">
+      </wsdl:part>
+   </wsdl:message>
+
+   <wsdl:portType name="Service">
+      <wsdl:operation name="login">
+         <wsdl:input message="impl:loginRequest" name="loginRequest">
+       </wsdl:input>
+         <wsdl:output message="impl:loginResponse" name="loginResponse">
+       </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="createMember">
+         <wsdl:input message="impl:createMemberRequest" name="createMemberRequest">
+       </wsdl:input>
+         <wsdl:output message="impl:createMemberResponse" name="createMemberResponse">
+       </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="memberFromID">
+         <wsdl:input message="impl:memberFromIDRequest" name="memberFromIDRequest">
+       </wsdl:input>
+         <wsdl:output message="impl:memberFromIDResponse" name="memberFromIDResponse">
+       </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="updatePerson">
+         <wsdl:input message="impl:updatePersonRequest" name="updatePersonRequest">
+       </wsdl:input>
+         <wsdl:output message="impl:updatePersonResponse" name="updatePersonResponse">
+       </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="displayBooks">
+         <wsdl:input message="impl:displayBooksRequest" name="displayBooksRequest">
+       </wsdl:input>
+         <wsdl:output message="impl:displayBooksResponse" name="displayBooksResponse">
+       </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="displayPremiumMembers">
+         <wsdl:input message="impl:displayPremiumMembersRequest" name="displayPremiumMembersRequest">
+       </wsdl:input>
+         <wsdl:output message="impl:displayPremiumMembersResponse" name="displayPremiumMembersResponse">
+       </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="displayPerson">
+         <wsdl:input message="impl:displayPersonRequest" name="displayPersonRequest">
+       </wsdl:input>
+         <wsdl:output message="impl:displayPersonResponse" name="displayPersonResponse">
+       </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="displaySimpleMembers">
+         <wsdl:input message="impl:displaySimpleMembersRequest" name="displaySimpleMembersRequest">
+       </wsdl:input>
+         <wsdl:output message="impl:displaySimpleMembersResponse" name="displaySimpleMembersResponse">
+       </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="creteBook">
+         <wsdl:input message="impl:createBookRequest" name="createBookRequest">
+       </wsdl:input>
+         <wsdl:output message="impl:createBookResponse" name="createBookResponse">
+       </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="deleteBook">
+         <wsdl:input message="impl:deleteBookRequest" name="deleteBookRequest">
+       </wsdl:input>
+         <wsdl:output message="impl:deleteBookResponse" name="deleteBookResponse">
+       </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="deleteMember">
+         <wsdl:input message="impl:deleteMemberRequest" name="deleteMemberRequest">
+       </wsdl:input>
+         <wsdl:output message="impl:deleteMemberResponse" name="deleteMemberResponse">
+       </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="updateBook">
+         <wsdl:input message="impl:updateBookRequest" name="updateBookRequest">
+       </wsdl:input>
+         <wsdl:output message="impl:updateBookResponse" name="updateBookResponse">
+       </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="updateBookRequest">
+         <wsdl:input message="impl:updateBookRequestRequest" name="updateBookRequestRequest">
+       </wsdl:input>
+         <wsdl:output message="impl:updateBookRequestResponse" name="updateBookRequestResponse">
+       </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="searchBook">
+         <wsdl:input message="impl:searchBookRequest" name="searchBookRequest">
+       </wsdl:input>
+         <wsdl:output message="impl:searchBookResponse" name="searchBookResponse">
+       </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="searchPerson">
+         <wsdl:input message="impl:searchPersonRequest" name="searchPersonRequest">
+       </wsdl:input>
+         <wsdl:output message="impl:searchPersonResponse" name="searchPersonResponse">
+       </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="addToCart">
+         <wsdl:input message="impl:addToCartRequest" name="addToCartRequest">
+       </wsdl:input>
+         <wsdl:output message="impl:addToCartResponse" name="addToCartResponse">
+       </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="dopayment">
+         <wsdl:input message="impl:dopaymentRequest" name="dopaymentRequest">
+       </wsdl:input>
+         <wsdl:output message="impl:dopaymentResponse" name="dopaymentResponse">
+       </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getBookInformationWithIssuedByUsers">
+         <wsdl:input message="impl:getBookInformationWithIssuedByUsersRequest" name="getBookInformationWithIssuedByUsersRequest">
+       </wsdl:input>
+         <wsdl:output message="impl:getBookInformationWithIssuedByUsersResponse" name="getBookInformationWithIssuedByUsersResponse">
+       </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="displayCart">
+         <wsdl:input message="impl:displayCartRequest" name="displayCartRequest">
+       </wsdl:input>
+         <wsdl:output message="impl:displayCartResponse" name="displayCartResponse">
+       </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="removeBookFromCart">
+         <wsdl:input message="impl:removeBookFromCartRequest" name="removeBookFromCartRequest">
+       </wsdl:input>
+         <wsdl:output message="impl:removeBookFromCartResponse" name="removeBookFromCartResponse">
+       </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="isPaymentDue">
+         <wsdl:input message="impl:isPaymentDueRequest" name="isPaymentDueRequest">
+       </wsdl:input>
+         <wsdl:output message="impl:isPaymentDueResponse" name="isPaymentDueResponse">
+       </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="emptyCart">
+         <wsdl:input message="impl:emptyCartRequest" name="emptyCartRequest">
+       </wsdl:input>
+         <wsdl:output message="impl:emptyCartResponse" name="emptyCartResponse">
+       </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="issuedBookList">
+         <wsdl:input message="impl:issuedBookListRequest" name="issuedBookListRequest">
+       </wsdl:input>
+         <wsdl:output message="impl:issuedBookListResponse" name="issuedBookListResponse">
+       </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="rentBook">
+         <wsdl:input message="impl:rentBookRequest" name="rentBookRequest">
+       </wsdl:input>
+         <wsdl:output message="impl:rentBookResponse" name="rentBookResponse">
+       </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="returnBook">
+         <wsdl:input message="impl:returnBookRequest" name="returnBookRequest">
+       </wsdl:input>
+         <wsdl:output message="impl:returnBookResponse" name="returnBookResponse">
+       </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getUserInformationWithIssuedBooks">
+         <wsdl:input message="impl:getUserInformationWithIssuedBooksRequest" name="getUserInformationWithIssuedBooksRequest">       
+         </wsdl:input>
+         <wsdl:output message="impl:getUserInformationWithIssuedBooksResponse" name="getUserInformationWithIssuedBooksResponse">
+       </wsdl:output>
+      </wsdl:operation>
+   </wsdl:portType>
+
+   <wsdl:binding name="ServiceSoapBinding" type="impl:Service">
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+      <wsdl:operation name="login">
+         <wsdlsoap:operation soapAction=""/>
+         <wsdl:input name="loginRequest">
+            <wsdlsoap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output name="loginResponse">
+            <wsdlsoap:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="createMember">
+         <wsdlsoap:operation soapAction=""/>
+         <wsdl:input name="createMemberRequest">
+            <wsdlsoap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output name="createMemberResponse">
+            <wsdlsoap:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="memberFromID">
+         <wsdlsoap:operation soapAction=""/>
+         <wsdl:input name="memberFromIDRequest">
+            <wsdlsoap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output name="memberFromIDResponse">
+            <wsdlsoap:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="updatePerson">
+         <wsdlsoap:operation soapAction=""/>
+         <wsdl:input name="updatePersonRequest">
+            <wsdlsoap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output name="updatePersonResponse">
+            <wsdlsoap:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="displayBooks">
+         <wsdlsoap:operation soapAction=""/>
+         <wsdl:input name="displayBooksRequest">
+            <wsdlsoap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output name="displayBooksResponse">
+            <wsdlsoap:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="displayPremiumMembers">
+         <wsdlsoap:operation soapAction=""/>
+         <wsdl:input name="displayPremiumMembersRequest">
+            <wsdlsoap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output name="displayPremiumMembersResponse">
+            <wsdlsoap:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="displayPerson">
+         <wsdlsoap:operation soapAction=""/>
+         <wsdl:input name="displayPersonRequest">
+            <wsdlsoap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output name="displayPersonResponse">
+            <wsdlsoap:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="displaySimpleMembers">
+         <wsdlsoap:operation soapAction=""/>
+         <wsdl:input name="displaySimpleMembersRequest">
+            <wsdlsoap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output name="displaySimpleMembersResponse">
+            <wsdlsoap:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="createBook">
+         <wsdlsoap:operation soapAction=""/>
+         <wsdl:input name="createBookRequest">
+            <wsdlsoap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output name="createBookResponse">
+            <wsdlsoap:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="deleteBook">
+         <wsdlsoap:operation soapAction=""/>
+         <wsdl:input name="deleteBookRequest">
+            <wsdlsoap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output name="deleteBookResponse">
+            <wsdlsoap:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="deleteMember">
+         <wsdlsoap:operation soapAction=""/>
+         <wsdl:input name="deleteMemberRequest">
+            <wsdlsoap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output name="deleteMemberResponse">
+            <wsdlsoap:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="updateBook">
+         <wsdlsoap:operation soapAction=""/>
+         <wsdl:input name="updateBookRequest">
+            <wsdlsoap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output name="updateBookResponse">
+            <wsdlsoap:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="updateBookRequest">
+         <wsdlsoap:operation soapAction=""/>
+         <wsdl:input name="updateBookRequestRequest">
+            <wsdlsoap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output name="updateBookRequestResponse">
+            <wsdlsoap:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="searchBook">
+         <wsdlsoap:operation soapAction=""/>
+         <wsdl:input name="searchBookRequest">
+            <wsdlsoap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output name="searchBookResponse">
+            <wsdlsoap:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="searchPerson">
+         <wsdlsoap:operation soapAction=""/>
+         <wsdl:input name="searchPersonRequest">
+            <wsdlsoap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output name="searchPersonResponse">
+            <wsdlsoap:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="addToCart">
+         <wsdlsoap:operation soapAction=""/>
+         <wsdl:input name="addToCartRequest">
+            <wsdlsoap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output name="addToCartResponse">
+            <wsdlsoap:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="dopayment">
+         <wsdlsoap:operation soapAction=""/>
+         <wsdl:input name="dopaymentRequest">
+            <wsdlsoap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output name="dopaymentResponse">
+            <wsdlsoap:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getBookInformationWithIssuedByUsers">
+         <wsdlsoap:operation soapAction=""/>
+         <wsdl:input name="getBookInformationWithIssuedByUsersRequest">
+            <wsdlsoap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output name="getBookInformationWithIssuedByUsersResponse">
+            <wsdlsoap:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="displayCart">
+         <wsdlsoap:operation soapAction=""/>
+         <wsdl:input name="displayCartRequest">
+            <wsdlsoap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output name="displayCartResponse">
+            <wsdlsoap:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="removeBookFromCart">
+         <wsdlsoap:operation soapAction=""/>
+         <wsdl:input name="removeBookFromCartRequest">
+            <wsdlsoap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output name="removeBookFromCartResponse">
+            <wsdlsoap:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="isPaymentDue">
+         <wsdlsoap:operation soapAction=""/>
+         <wsdl:input name="isPaymentDueRequest">
+            <wsdlsoap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output name="isPaymentDueResponse">
+            <wsdlsoap:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="emptyCart">
+         <wsdlsoap:operation soapAction=""/>
+         <wsdl:input name="emptyCartRequest">
+            <wsdlsoap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output name="emptyCartResponse">
+            <wsdlsoap:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="issuedBookList">
+         <wsdlsoap:operation soapAction=""/>
+         <wsdl:input name="issuedBookListRequest">
+            <wsdlsoap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output name="issuedBookListResponse">
+            <wsdlsoap:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="rentBook">
+         <wsdlsoap:operation soapAction=""/>
+         <wsdl:input name="rentBookRequest">
+            <wsdlsoap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output name="rentBookResponse">
+            <wsdlsoap:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="returnBook">
+         <wsdlsoap:operation soapAction=""/>
+         <wsdl:input name="returnBookRequest">
+            <wsdlsoap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output name="returnBookResponse">
+            <wsdlsoap:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="getUserInformationWithIssuedBooks">
+         <wsdlsoap:operation soapAction=""/>
+         <wsdl:input name="getUserInformationWithIssuedBooksRequest">
+            <wsdlsoap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output name="getUserInformationWithIssuedBooksResponse">
+            <wsdlsoap:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+   </wsdl:binding>
+
+   <wsdl:service name="ServiceService">
+      <wsdl:port binding="impl:ServiceSoapBinding" name="Service">
+         <wsdlsoap:address location="http://localhost:8080/E_Library/services/Service"/>
+      </wsdl:port>
+   </wsdl:service>
+</wsdl:definitions>
